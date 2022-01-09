@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.views.decorators.csrf import csrf_exempt, csrf_protect
-from django.contrib.auth.models import User
-from django.db.models import F
+from django.http import JsonResponse
 from employee.models import EmployeeModel
 import json
-from django.contrib.auth import authenticate, login, logout
 from django.core.cache import cache
 
 
