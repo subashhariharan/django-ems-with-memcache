@@ -4,9 +4,10 @@ from django.http import JsonResponse
 from employee.models import EmployeeModel
 import json
 from django.core.cache import cache
+from ratelimit.decorators import ratelimit
 
 
-
+@ratelimit(key='ip', rate='100/h', block=True)
 def add_employee(request):
 	response_data = {}
 	try:
@@ -22,6 +23,7 @@ def add_employee(request):
 		response_data['message'] = '%s (%s)' % (e, type(e))
 	return JsonResponse(response_data)
 
+@ratelimit(key='ip', rate='100/h', block=True)
 def employee_details(request):
 	response_data = {}
 	try:
@@ -51,7 +53,7 @@ def employee_details(request):
 		return JsonResponse(response_data)
 
 
-
+@ratelimit(key='ip', rate='100/h', block=True)
 def employee_list(request):
 	response_data = {}
 	try:
@@ -71,7 +73,7 @@ def employee_list(request):
 		response_data['message'] = '%s (%s)' % (e, type(e))
 		return JsonResponse(response_data)
 
-
+@ratelimit(key='ip', rate='100/h', block=True)
 def update_employee(request):
 	response_data = {}
 	try:
@@ -90,7 +92,7 @@ def update_employee(request):
 	return JsonResponse(response_data)
 
 
-
+@ratelimit(key='ip', rate='100/h', block=True)
 def delete_employee(request):
 	response_data = {}
 	try:
